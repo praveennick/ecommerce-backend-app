@@ -19,6 +19,10 @@ var UserSchema = new Schema(
         mobile:{
             type:Number,
             required:true
+        },
+        role:{
+            type: String,
+            default: "ROLE_CUSTOMER"
         }
     }
 )

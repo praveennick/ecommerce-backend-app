@@ -27,15 +27,20 @@ exports.loginUser=function(request,response){
         if(error){
             response.send({result:false,error:error.message})
         }
-        if(docs.password == userData.password){
-            var payload = {
-                id: docs._id
+        if(docs.role==userData.role){
+            if(docs.password == userData.password){
+                var payload = {
+                    id: docs._id
+                }
+                var token=jwt.sign(payload,Config.config.SECRET_KEY);
+                response.send({result:"Login Success",token:token})
+            }else{
+                response.send({result:false,message:"Incorrect Password!"})
             }
-            var token=jwt.sign(payload,Config.config.SECRET_KEY);
-            response.send({result:"Login Success",token:token})
         }else{
-            response.send({result:"Unauthorized access"})
+            response.status(401).send({result:false,message:"Unauthorized Access!"});
         }
+        
     })
 }
 
