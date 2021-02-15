@@ -39,3 +39,23 @@ exports.loginUser=function(request,response){
     })
 }
 
+exports.changePassword=function(request,response){
+    var userData= request.body;
+    userModel.findOne({email:userData.email},function(error,docs){
+        if(error){
+            response.send({result:false,error:error.message})
+        }
+        if(docs.password == userData.currentPassword){
+            userModel.updateOne({email:userData.email},{password:userData.newPassword},function(err,res){
+                if(err){
+                    response.send({result:false,err:err.message})
+                }
+                if(res){
+                    response.send({result:true,message:"Password updated"})
+                }
+            })
+        }else{
+            response.send("cannot change pwd")
+        }
+    })
+}
