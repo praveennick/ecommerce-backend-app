@@ -4,10 +4,12 @@ var app = express();
 
 var Config= require('./configs/app.config')
 var DB= require('./configs/db.config');
-var userRouter= require('./routes/user.route')
+var userRouter= require('./routes/user.route');
+var productRouter= require('./routes/product.route')
 
 app.use(express.json());
 app.use('/user',userRouter);
+app.use('/admin',productRouter)
 
 DB.connect();
 
