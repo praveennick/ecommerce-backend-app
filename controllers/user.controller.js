@@ -35,10 +35,10 @@ exports.loginUser=function(request,response){
                 var token=jwt.sign(payload,Config.config.SECRET_KEY);
                 response.send({result:"Login Success",token:token})
             }else{
-                response.send({result:false,message:"Incorrect Password!"})
+                response.send({result:false,message:"Incorrect Password!"});
             }
         }else{
-            response.status(401).send({result:false,message:"Unauthorized Access!"});
+            response.status(401).send({result:false,message:"Unauthorized Access!!"});
         }
         
     })
@@ -60,7 +60,7 @@ exports.changePassword=function(request,response){
                 }
             })
         }else{
-            response.send("cannot change pwd")
+            response.send("cannot change pwd");
         }
     })
 }
