@@ -16,6 +16,7 @@ productRouter.get('/getProductById/:id',ProductController.getProductById);
 //http://localhost:9478/admin/deleteProduct/
 productRouter.delete('/deleteProduct/:id',ProductController.deleteProduct);
 
-
+//http://localhost:9478/admin/updateProduct/
+productRouter.put('/updateProduct/:id',ProductController.updateProduct);
 
 module.exports = productRouter;

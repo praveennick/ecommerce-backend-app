@@ -57,3 +57,28 @@ exports.deleteProduct=function(request,response){
     })
 }
 
+exports.updateProduct=function(request,response){
+    var pid= request.params.id;
+    var updatedProduct= request.body;
+    console.log("request",request,request.body)
+    ProductModel.updateOne({pid:pid},updatedProduct,function(err,docs){
+        if(err){
+            response.send({error:err.message})
+        }
+        if(docs){
+            if(docs.ok<=0){
+                response.send({message:"please check the syntax"});
+            }else
+            if(docs.n<=0){
+                response.send({message:"product "+pid+" not found!"})
+            }else
+            if(docs.nModified<=0){
+                response.send({message:"product "+pid+" already updated!"});
+            }else
+            {
+                response.send({message:"product "+pid+" updated successfully!"});
+                console.log(docs)
+            }
+        }
+    })
+}
