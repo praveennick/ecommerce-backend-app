@@ -25,7 +25,8 @@ exports.allProducts= function(request,response){
 }
 
 exports.getProductById=function(request,response){
-    var pid=request.params.pid
+    var pid=request.params.id
+    console.log("pid",pid)
     ProductModel.findOne({pid:pid},function(err,docs){
         if(err){
             response.send({err:err.message})
@@ -39,7 +40,7 @@ exports.getProductById=function(request,response){
 }
 
 exports.deleteProduct=function(request,response){
-    var pid= request.params.pid;
+    var pid= request.params.id;
     ProductModel.deleteOne({pid:pid},function(err,docs){
         if(err){
             response.send({error:err.message,message:"hello"});
@@ -55,3 +56,4 @@ exports.deleteProduct=function(request,response){
         }
     })
 }
+

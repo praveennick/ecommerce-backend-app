@@ -11,9 +11,11 @@ productRouter.post('/addProduct',ProductController.addProduct);
 productRouter.get('/allProducts',ProductController.allProducts);
 
 //http://localhost:9478/admin/getProductById/
-productRouter.get('/getProductById/:pid',ProductController.getProductById);
+productRouter.get('/getProductById/:id',ProductController.getProductById);
 
 //http://localhost:9478/admin/deleteProduct/
-productRouter.delete('/deleteProduct/:pid',ProductController.deleteProduct);
+productRouter.delete('/deleteProduct/:id',ProductController.deleteProduct);
+
+
 
 module.exports = productRouter;
