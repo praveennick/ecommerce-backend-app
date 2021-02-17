@@ -77,8 +77,23 @@ exports.updateProduct=function(request,response){
             }else
             {
                 response.send({message:"product "+pid+" updated successfully!"});
-                console.log(docs)
             }
         }
     })
+}
+
+exports.getProductByChoice=function(request,response){
+    console.log(request.query.choice);
+    var choice= request.query.choice;
+    switch(choice){
+        case "asc": ProductModel.find({}).sort({price:1}).exec(function(error,docs){
+            response.send(docs)
+        });
+        break;
+
+        case "desc":ProductModel.find({}).sort({price:-1}).exec(function(error,docs){
+            response.send(docs);
+        })
+        break;
+    }
 }
