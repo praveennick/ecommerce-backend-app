@@ -25,7 +25,7 @@ exports.allProducts= function(request,response){
 }
 
 exports.getProductById=function(request,response){
-    var pid=request.params.id
+    var pid=request.params.pid
     console.log("pid",pid)
     ProductModel.findOne({pid:pid},function(err,docs){
         if(err){
@@ -70,7 +70,7 @@ exports.updateProduct=function(request,response){
                 response.send({message:"please check the syntax"});
             }else
             if(docs.n<=0){
-                response.send({message:"product "+pid+" not found!"})
+                response.send({message:"product "+pid+" not found!!"})
             }else
             if(docs.nModified<=0){
                 response.send({message:"product "+pid+" already updated!"});
@@ -96,4 +96,52 @@ exports.getProductByChoice=function(request,response){
         })
         break;
     }
+}
+
+exports.filterProducts=function(request,response){
+    var filterData= request.query.filter;
+    console.log(filterData);
+    switch(filterData){
+        case "Mobiles": 
+            ProductModel.find({sub_category:filterData}).populate().exec(function(err,docs){
+                response.send(docs);
+            });
+        break;
+        case "Laptops":
+            ProductModel.find({sub_category:filterData}).populate().exec(function(err,docs){
+                response.send(docs);
+            })
+        break;
+        case "Staples":
+            ProductModel.find({sub_category:filterData}).populate().exec(function(err,docs){
+                response.send(docs);
+            })
+        break;
+        case "Snacks&Beverages":
+            ProductModel.find({sub_category:filterData}).populate().exec(function(err,docs){
+                response.send(docs);
+            })
+        break;
+        case "packaged-food":
+            ProductModel.find({sub_category:filterData}).populate().exec(function(err,docs){
+                response.send(docs);
+            })
+        break;
+        case "Personal&BabyCare":
+            ProductModel.find({sub_category:filterData}).populate().exec(function(err,docs){
+                response.send(docs);
+            })
+        break;
+        case "clothing-and-accessories":
+            ProductModel.find({sub_category:filterData}).populate().exec(function(err,docs){
+                response.send(docs);
+            })
+        break;
+        case "Watches":
+            ProductModel.find({sub_category:filterData}).populate().exec(function(err,docs){
+                response.send(docs);
+            })
+        break;
+    }
+   
 }
