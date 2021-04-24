@@ -15,6 +15,7 @@ app.use('/admin',productRouter);
 
 app.get('/',(req,res)=>{
     res.send("Welcome to Ecommerce Backend Application");
+    
 })
 
 DB.connect();
