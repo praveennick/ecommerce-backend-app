@@ -66,15 +66,16 @@ exports.changePassword=function(request,response){
 }
 
 exports.getUserByUsername=function(request,response){
-    var username=request.params.username;
+    var username=request.params.username
+    console.log("username",username)
     userModel.findOne({username:username},function(err,docs){
         if(err){
-            response.send({error:err.message})
+            response.send({err:err.message})
         }
         if(docs){
             response.send(docs)
         }else{
-            response.send({message:"User "+username+" not found!"});
+            response.send({message:"User "+username+" not found!"})
         }
     })
 }
