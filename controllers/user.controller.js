@@ -64,3 +64,17 @@ exports.changePassword=function(request,response){
         }
     })
 }
+
+exports.getUserByMobile=function(request,response){
+    var mobile=request.params.mobile;
+    userModel.findOne({mobile:mobile},function(err,docs){
+        if(err){
+            response.send({error:err.message})
+        }
+        if(docs){
+            response.send(docs)
+        }else{
+            response.send({message:"User "+mobile+" not found!"});
+        }
+    })
+}

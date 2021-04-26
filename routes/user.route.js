@@ -33,4 +33,8 @@ var authMiddleware = function(request,response,next){
 //http://localhost:9478/user/changePassword
 userRouter.post('/changePassword',authMiddleware,userController.changePassword);
 
+
+//http://localhost:9478/user/getUserByMobile/
+userRouter.get('/getUserById/:mobile',userController.getUserByMobile);
+
 module.exports=userRouter;
