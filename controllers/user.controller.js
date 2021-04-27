@@ -23,7 +23,7 @@ exports.registerUser=function(request,response){
 
 exports.loginUser=function(request,response){
     var userData= request.body;
-    userModel.findOne({email:userData.email},function(error,docs){
+    userModel.findOne({username:userData.username},function(error,docs){
         if(error){
             response.send({result:false,error:error.message})
         }
